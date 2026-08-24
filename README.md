@@ -26,6 +26,7 @@ Ninguém precisa mexer em código para mudar preço, foto, descrição ou produt
 |---|---|
 | `index.html` | O cardápio em si. Página única, sem build. |
 | `menu.json` | Os produtos. **Gerado automaticamente — não edite à mão.** |
+| `index.html` | A página. Contém um bloco `dados-cardapio` **preenchido pelo robô** — não edite esse bloco. |
 | `atualizar_cardapio.py` | O robô que busca da API e gera o `menu.json`. |
 | `.github/workflows/atualizar_cardapio.yml` | Agenda de execução do robô. |
 | `assets/tailwind.css` | Estilos. **Gerado automaticamente — não edite à mão.** |
@@ -63,6 +64,24 @@ pip install -r requirements.txt
 python atualizar_cardapio.py     # regenera o menu.json
 python -m http.server 8000       # abre em http://localhost:8000
 ```
+
+## Por que o cardápio está dentro do index.html
+
+O robô grava os produtos em dois lugares: no `menu.json` (fonte da verdade,
+fácil de abrir e conferir) e embutido no `index.html`, num bloco
+`<script type="application/json" id="dados-cardapio">`.
+
+A duplicação é proposital. Buscar o `menu.json` à parte custava uma viagem de
+rede inteira, e o cardápio só aparecia depois dela — sob 4G isso atrasava a
+maior pintura da página em mais de 2 segundos:
+
+| | busca o arquivo | embutido |
+|---|---|---|
+| LCP | 5,5 s | **3,2 s** |
+| Performance | 72 | **93** |
+
+Se o bloco embutido faltar ou vier vazio, a página busca o `menu.json` como
+antes — nada quebra.
 
 ## Sobre as fotos
 

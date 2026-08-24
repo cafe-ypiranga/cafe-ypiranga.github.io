@@ -315,6 +315,44 @@ def atualizar_preload(cardapio):
             f.write(novo_html)
         print(f"   🔗 Preload apontando para {primeira}")
 
+def embutir_no_html(cardapio):
+    """
+    Escreve o cardapio dentro do index.html, num bloco <script type=
+    "application/json">. Sem isso o navegador precisa de uma viagem de rede
+    so para buscar o menu.json, e o cardapio so aparece depois dela.
+
+    O menu.json continua sendo gravado: e a fonte da verdade, serve de reserva
+    e e o que se abre pra conferir alguma coisa na mao.
+    """
+    ABRE = '<script type="application/json" id="dados-cardapio">'
+    FECHA = '</script>'
+
+    try:
+        with open('index.html', 'r', encoding='utf-8') as f:
+            html = f.read()
+    except OSError:
+        return
+
+    inicio = html.find(ABRE)
+    if inicio == -1:
+        print("   ⚠️ Bloco 'dados-cardapio' nao encontrado no index.html; etapa pulada.")
+        return
+    fim = html.find(FECHA, inicio)
+    if fim == -1:
+        print("   ⚠️ Bloco 'dados-cardapio' esta sem fechamento; etapa pulada.")
+        return
+
+    # separators sem espaco: e o mesmo dado, com menos bytes pra trafegar.
+    dados = json.dumps(cardapio, ensure_ascii=False, separators=(',', ':'))
+    # '<' vira \u003c pra nenhuma descricao de produto conseguir fechar a tag.
+    dados = dados.replace('<', '\\u003c')
+
+    novo = html[:inicio + len(ABRE)] + dados + html[fim:]
+    if novo != html:
+        with open('index.html', 'w', encoding='utf-8') as f:
+            f.write(novo)
+        print(f"   📄 Cardapio embutido no index.html ({len(dados)/1024:.0f} KB)")
+
 def run():
     print("🔥 Iniciando Atualização (API)...")
 
@@ -408,6 +446,7 @@ def run():
 
         with open('menu.json', 'w', encoding='utf-8') as f:
             json.dump(cardapio_final, f, ensure_ascii=False, indent=4)
+        embutir_no_html(cardapio_final)
         print("✨ Sucesso. Menu atualizado!")
 
     except SystemExit:
