@@ -58,7 +58,7 @@
 
     <footer class="bg-gray-800 dark:bg-black text-gray-300 py-8 text-center pb-24">
         <p class="font-bold text-lg">CAFÉ YPIRANGA</p>
-        <p class="text-sm mt-2 opacity-70">© 2024 Todos os direitos reservados.</p>
+        <p class="text-sm mt-2 opacity-70">© <span id="footer-year">2024</span> Todos os direitos reservados.</p>
     </footer>
 
     <div class="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-4">
@@ -228,6 +228,11 @@
             currentQty: 1,
 
             async init() {
+                // Ano do rodape: fica sempre correto sem ninguem precisar editar.
+                // Fora do try porque tem que valer tambem na tela de erro.
+                const anoEl = document.getElementById('footer-year');
+                if (anoEl) anoEl.textContent = new Date().getFullYear();
+
                 try {
                     // Força cache bust para garantir json novo
                     const ts = new Date().getTime();
