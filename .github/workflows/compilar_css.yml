@@ -1,0 +1,38 @@
+name: Compilar CSS
+
+# Roda só quando algo que afeta o CSS muda. O menu.json de hora em hora NAO
+# dispara este workflow — o cardapio muda, o visual nao.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'src.css'
+      - 'tailwind.config.js'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Configurar Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+
+      - name: Gerar o CSS
+        # Versao fixa e a mesma usada localmente, pra nao gerar CSS diferente.
+        run: npx --yes tailwindcss@3.4.17 -c tailwind.config.js -i src.css -o assets/tailwind.css --minify
+
+      - name: Salvar o CSS gerado
+        uses: stefanzweifel/git-auto-commit-action@4a55954c782fc1ea30b9056cd3e7a2b40ca8887d # v7.2.0
+        with:
+          commit_message: "🎨 Recompilar o CSS"
+          file_pattern: assets/tailwind.css
+          branch: main

@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Icones SVG: imitam o Font Awesome — tamanho pelo font-size do pai e cor
+   herdada. A largura e FIXA em 1em de proposito: com 'width:auto' o SVG
+   assume a largura padrao de 300px dentro de um flex e destroi o layout.
+   A proporcao de cada icone continua certa pelo preserveAspectRatio. */
+.icon {
+  height: 1em;
+  width: 1em;
+  flex: none;
+  display: inline-block;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+/* Estilos proprios do cardapio (antes ficavam inline no <head>) */
+body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+.product-card.closed-visual-only { opacity: 0.6; cursor: default; transform: none !important; }
+#category-nav::-webkit-scrollbar { height: 4px; }
+#category-nav::-webkit-scrollbar-thumb { background-color: #FFD100; border-radius: 20px; }
+/* Esconde a barra de rolagem mas mantém funcionalidade */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

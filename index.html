@@ -30,36 +30,43 @@
     <meta property="og:image:alt" content="CAFÉ YPIRANGA - Cardápio Digital">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Versao fixa de proposito: a URL sem versao entrega o que o CDN decidir,
-         e a linha 4.x do Tailwind nao aceita mais o 'tailwind.config' usado
-         logo abaixo. Sem fixar, uma troca no CDN tiraria o estilo do site. -->
-    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-    <script>
-        tailwind.config = { darkMode: 'class' }
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS do Tailwind ja compilado (gerado pelo workflow "Compilar CSS").
+         Antes era o cdn.tailwindcss.com: 398 KB de JavaScript que montava o
+         CSS no navegador a cada visita. Agora sao ~25 KB de CSS pronto. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .product-card.closed-visual-only { opacity: 0.6; cursor: default; transform: none !important; }
-        #category-nav::-webkit-scrollbar { height: 4px; }
-        #category-nav::-webkit-scrollbar-thumb { background-color: #FFD100; border-radius: 20px; }
-        /* Esconde a barra de rolagem mas mantém funcionalidade */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
+
+    <link rel="stylesheet" href="assets/tailwind.css">
 </head>
 <body class="bg-stone-50 dark:bg-gray-900 text-gray-800 dark:text-stone-200 transition-colors duration-300">
+
+    <!-- Icones do Font Awesome Free 6.4.0 (CC BY 4.0), embutidos como SVG.
+         Evita baixar 100 KB de CSS + fonte so para usar 12 icones. -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+        <symbol id="i-arrow-up" viewBox="0 0 384 512"><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></symbol>
+        <symbol id="i-bars" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></symbol>
+        <symbol id="i-chevron-down" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></symbol>
+        <symbol id="i-exclamation-triangle" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></symbol>
+        <symbol id="i-map-marker-alt" viewBox="0 0 384 512"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></symbol>
+        <symbol id="i-plus" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></symbol>
+        <symbol id="i-shopping-bag" viewBox="0 0 448 512"><path d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></symbol>
+        <symbol id="i-shopping-basket" viewBox="0 0 576 512"><path d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></symbol>
+        <symbol id="i-shopping-cart" viewBox="0 0 576 512"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></symbol>
+        <symbol id="i-times" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></symbol>
+        <symbol id="i-trash-alt" viewBox="0 0 448 512"><path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/></symbol>
+        <symbol id="i-whatsapp" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></symbol>
+    </svg>
 
     <header id="header" class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-md sticky top-0 z-30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between py-3">
                 <div class="flex items-center min-w-0">
-                    <button id="category-drawer-button" class="md:hidden mr-3 text-[#0033A0] dark:text-[#FFD100] text-xl"><i class="fas fa-bars"></i></button>
+                    <button id="category-drawer-button" class="md:hidden mr-3 text-[#0033A0] dark:text-[#FFD100] text-xl"><svg class="icon" aria-hidden="true"><use href="#i-bars"/></svg></button>
                     <img src="https://assets.olaclick.app/companies/logos/5020ff7e-3077-4507-911a-7820e15488e3.webp" alt="Café Ypiranga" class="w-12 h-12 rounded-full mr-4 border-2 border-stone-200" onerror="this.onerror=null; this.src='assets/logo.png'">
                     <div class="min-w-0">
                         <h1 class="text-xl font-bold text-[#0033A0] dark:text-[#FFD100] truncate">CAFÉ YPIRANGA</h1>
-                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"><i class="fas fa-map-marker-alt mr-1"></i> Santa Helena, PR</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"><svg class="icon mr-1" aria-hidden="true"><use href="#i-map-marker-alt"/></svg> Santa Helena, PR</div>
                     </div>
                 </div>
                 <div class="flex items-center">
@@ -78,7 +85,7 @@
     <div id="mobile-sticky-nav" class="md:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md shadow-md w-full px-4 py-2 fixed top-0 left-0 right-0 z-20 transition-transform duration-300 -translate-y-full mt-[72px]">
         <div class="flex justify-between items-center text-sm">
             <span class="font-bold text-[#0033A0] dark:text-[#FFD100]" id="current-category-sticky">Cardápio</span>
-            <i class="fas fa-chevron-down text-gray-400"></i>
+            <svg class="icon text-gray-400" aria-hidden="true"><use href="#i-chevron-down"/></svg>
         </div>
     </div>
 
@@ -91,18 +98,18 @@
 
     <div class="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-4">
         <button id="cart-fab" class="hidden relative bg-[#FFD100] text-[#0033A0] w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-xl hover:scale-105 active:scale-95 transition-all border-4 border-white dark:border-gray-800">
-            <i class="fas fa-shopping-cart"></i>
+            <svg class="icon" aria-hidden="true"><use href="#i-shopping-cart"/></svg>
             <span id="cart-badge" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-800">0</span>
         </button>
         <button id="back-to-top" class="hidden bg-[#0033A0] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg shadow-lg active:scale-90 transition-all opacity-80 hover:opacity-100">
-            <i class="fas fa-arrow-up"></i>
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg>
         </button>
     </div>
 
     <div id="product-modal" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col md:flex-row overflow-hidden relative animate-fade-in">
             <button class="close-button absolute top-4 right-4 z-10 bg-black/20 hover:bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center backdrop-blur-md transition-colors">
-                <i class="fas fa-times"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-times"/></svg>
             </button>
             
             <div class="w-full md:w-1/2 h-48 md:h-auto relative bg-gray-100 dark:bg-gray-700">
@@ -144,7 +151,7 @@
         <div class="relative w-4/5 max-w-xs h-full bg-white dark:bg-gray-900 shadow-2xl flex flex-col transform transition-transform duration-300">
             <div class="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-800 bg-[#0033A0] text-white">
                 <h2 class="text-lg font-bold">Categorias</h2>
-                <button id="close-drawer-button" class="text-white/80 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+                <button id="close-drawer-button" class="text-white/80 hover:text-white"><svg class="icon text-xl" aria-hidden="true"><use href="#i-times"/></svg></button>
             </div>
             <nav id="category-links-mobile" class="flex-1 overflow-y-auto p-2 space-y-1"></nav>
         </div>
@@ -154,12 +161,12 @@
         <div id="order-drawer-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
         <div class="relative ml-auto w-full max-w-md h-full bg-white dark:bg-gray-900 shadow-2xl flex flex-col transform transition-transform duration-300">
             <div class="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 z-10">
-                <h2 class="text-xl font-bold text-[#0033A0] dark:text-[#FFD100]"><i class="fas fa-shopping-bag mr-2"></i>Seu Pedido</h2>
-                <button id="close-order-drawer-button" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200"><i class="fas fa-times"></i></button>
+                <h2 class="text-xl font-bold text-[#0033A0] dark:text-[#FFD100]"><svg class="icon mr-2" aria-hidden="true"><use href="#i-shopping-bag"/></svg>Seu Pedido</h2>
+                <button id="close-order-drawer-button" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200"><svg class="icon" aria-hidden="true"><use href="#i-times"/></svg></button>
             </div>
             
             <div id="empty-cart-msg" class="hidden flex-1 flex flex-col items-center justify-center text-gray-400 p-8 text-center">
-                <i class="fas fa-shopping-basket text-6xl mb-4 opacity-30"></i>
+                <svg class="icon text-6xl mb-4 opacity-30" aria-hidden="true"><use href="#i-shopping-basket"/></svg>
                 <p>Sua sacola está vazia.</p>
                 <button onclick="document.getElementById('order-summary-drawer').classList.add('hidden')" class="mt-4 text-[#0033A0] dark:text-[#FFD100] font-bold text-sm hover:underline">Ver Cardápio</button>
             </div>
@@ -176,7 +183,7 @@
                     <span id="order-grand-total">R$ 0,00</span>
                 </div>
                 <button onclick="enviarPedidoWhatsApp()" class="w-full bg-[#25D366] text-white font-bold py-4 rounded-xl hover:bg-[#128C7E] transition-all shadow-lg hover:shadow-green-500/30 flex items-center justify-center text-lg">
-                    <i class="fab fa-whatsapp text-2xl mr-2"></i> Enviar Pedido
+                    <svg class="icon text-2xl mr-2" aria-hidden="true"><use href="#i-whatsapp"/></svg> Enviar Pedido
                 </button>
             </div>
         </div>
@@ -192,7 +199,7 @@
                 <div class="flex items-center justify-between mt-3">
                     <span class="price text-base sm:text-lg font-bold text-[#0033A0] dark:text-[#FFD100]"></span>
                     <span class="options-badge hidden text-[10px] font-bold bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full uppercase tracking-wide border border-yellow-200">
-                        <i class="fas fa-plus mr-1"></i>Opções
+                        <svg class="icon mr-1" aria-hidden="true"><use href="#i-plus"/></svg>Opções
                     </span>
                 </div>
             </div>
@@ -226,14 +233,14 @@
 
     <template id="order-item-template">
         <div class="order-item bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex gap-3 relative animate-fade-in-up">
-            <div class="w-8 flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-700 rounded text-xs font-bold text-gray-500">
+            <div class="min-w-8 shrink-0 px-1.5 flex items-center justify-center bg-gray-50 dark:bg-gray-700 rounded text-xs font-bold text-gray-500">
                 <span class="qty-display">1</span>
                 <span>x</span>
             </div>
             <div class="flex-1 min-w-0">
                 <div class="flex justify-between items-start">
                     <p class="font-bold text-gray-800 dark:text-gray-100 text-sm leading-tight pr-6 name truncate"></p>
-                    <button class="remove-item-btn text-gray-400 hover:text-red-500 transition-colors p-1 -mt-1 -mr-2"><i class="fas fa-trash-alt"></i></button>
+                    <button class="remove-item-btn text-gray-400 hover:text-red-500 transition-colors p-1 -mt-1 -mr-2"><svg class="icon" aria-hidden="true"><use href="#i-trash-alt"/></svg></button>
                 </div>
                 <div class="addons text-xs text-gray-500 dark:text-gray-400 mt-1 space-y-0.5"></div>
                 <div class="flex justify-between items-end mt-2">
@@ -272,7 +279,7 @@
                     console.error(e);
                     document.getElementById('menu-container').innerHTML = 
                         `<div class="flex flex-col items-center justify-center py-20 text-center px-4">
-                            <i class="fas fa-exclamation-triangle text-4xl text-yellow-500 mb-4"></i>
+                            <svg class="icon text-4xl text-yellow-500 mb-4" aria-hidden="true"><use href="#i-exclamation-triangle"/></svg>
                             <h3 class="text-xl font-bold mb-2">Ops! O cardápio está indisponível.</h3>
                             <p class="text-gray-500">Tente recarregar a página.</p>
                             <button onclick="location.reload()" class="mt-4 bg-[#0033A0] text-white px-6 py-2 rounded-full">Recarregar</button>

@@ -28,12 +28,32 @@ Ninguém precisa mexer em código para mudar preço, foto, descrição ou produt
 | `menu.json` | Os produtos. **Gerado automaticamente — não edite à mão.** |
 | `atualizar_cardapio.py` | O robô que busca da API e gera o `menu.json`. |
 | `.github/workflows/atualizar_cardapio.yml` | Agenda de execução do robô. |
+| `assets/tailwind.css` | Estilos. **Gerado automaticamente — não edite à mão.** |
+| `src.css` / `tailwind.config.js` | Fonte dos estilos. É aqui que se mexe no visual. |
+| `assets/` | Logo, favicon e imagem de compartilhamento. |
 
 ## Atualizar o cardápio
 
 **Normalmente não precisa fazer nada** — o robô roda sozinho de hora em hora.
 
 Para forçar agora: aba **Actions** → *Atualizar Cardápio Diário* → **Run workflow**.
+
+## Mexer no visual
+
+O CSS em `assets/tailwind.css` é **gerado**. Para alterar o visual, edite o
+`index.html` ou o `src.css` e faça o push: o workflow *Compilar CSS* recompila
+e commita o resultado sozinho. Não é preciso instalar nada.
+
+Para ver o resultado antes de subir:
+
+```bash
+npx tailwindcss@3.4.17 -c tailwind.config.js -i src.css -o assets/tailwind.css --minify
+```
+
+Duas coisas que o Tailwind não consegue detectar sozinho e por isso estão no
+`safelist` do `tailwind.config.js`: classes cujo valor entre colchetes contém
+aspas, parênteses ou vírgulas (o leitor de classes para no caractere especial).
+Se uma classe assim sumir do site, é aí que se adiciona.
 
 ## Rodar na sua máquina
 
