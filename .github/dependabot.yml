@@ -1,0 +1,15 @@
+# Mantém as actions do workflow atualizadas.
+#
+# As actions estão fixadas por SHA (e não por tag) porque tag no Git pode ser
+# reapontada para outro código. Isso protege contra um ataque de cadeia de
+# suprimentos, mas congela a versão — o Dependabot existe para destravar:
+# ele abre PR trocando o SHA e o comentário da versão juntos.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "chore"
+    open-pull-requests-limit: 3
