@@ -13,15 +13,15 @@ jobs:
 
     steps:
       - name: Baixar código do repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0 # Baixa todo o histórico para permitir o rebase corretamente
 
       - name: Configurar Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.12'
 
       - name: Instalar dependências
         run: pip install -r requirements.txt
@@ -37,8 +37,8 @@ jobs:
         run: python atualizar_cardapio.py
 
       - name: Salvar alterações no Git
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Atualização automática do cardápio (Playwright)"
+          commit_message: "🤖 Atualização automática do cardápio"
           file_pattern: menu.json
           branch: main
