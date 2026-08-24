@@ -30,7 +30,8 @@ Ninguém precisa mexer em código para mudar preço, foto, descrição ou produt
 | `.github/workflows/atualizar_cardapio.yml` | Agenda de execução do robô. |
 | `assets/tailwind.css` | Estilos. **Gerado automaticamente — não edite à mão.** |
 | `src.css` / `tailwind.config.js` | Fonte dos estilos. É aqui que se mexe no visual. |
-| `assets/` | Logo, favicon e imagem de compartilhamento. |
+| `assets/` | Logo, favicon, imagem de compartilhamento e a fonte. |
+| `assets/fotos/` | As fotos dos produtos. **Baixadas pelo robô — não mexa.** |
 
 ## Atualizar o cardápio
 
@@ -62,6 +63,17 @@ pip install -r requirements.txt
 python atualizar_cardapio.py     # regenera o menu.json
 python -m http.server 8000       # abre em http://localhost:8000
 ```
+
+## Sobre as fotos
+
+O robô baixa cada foto do ola.click e guarda no repositório, em dois tamanhos:
+`assets/fotos/400/` (usado nos cards) e `assets/fotos/800/` (quando o cliente
+abre o item). O ola.click só oferece 150px e 800px — o 400px é gerado aqui,
+porque 150 fica borrado no card e 800 desperdiça banda de celular.
+
+Isso existe para o cardápio continuar funcionando mesmo que o ola.click saia do
+ar: as fotos são do café e ficam com o café. O robô só baixa o que ainda não
+tem, e apaga sozinho as fotos que nenhum produto usa mais.
 
 ## Sobre os adicionais
 

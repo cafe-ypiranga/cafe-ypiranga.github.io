@@ -1,5 +1,7 @@
 import json
+import os
 import re
+import shutil
 import sys
 import time
 import requests
@@ -25,8 +27,19 @@ URL_API = f"https://api.olaclick.app/ms-products/public/companies/{COMPANY_ID}/c
 # de 150px em webp (4 KB) e o próprio index.html troca para 800px quando o
 # cliente abre o item — por isso derivamos a miniatura em vez de usar a URL
 # crua, que deixaria a página ~18x mais pesada no celular.
-BASE_IMAGEM = "https://assets.olaclick.app/companies/products/images/150/"
+BASE_IMAGEM = "https://assets.olaclick.app/companies/products/images/{tamanho}/{id}.webp"
 SEM_IMAGEM = "https://placehold.co/400x300?text=Sem+Imagem"
+
+# As fotos ficam no repositorio para o cardapio nao depender do ola.click
+# continuar no ar. A estrutura de pastas imita a do ola.click de proposito:
+# assim o highRes() do index.html, que troca '/150/' por '/800/' na URL,
+# continua funcionando sem alteracao.
+FOTOS_DIR = os.path.join("assets", "fotos")
+
+# O ola.click so oferece 150px (pequena demais para o card) e 800px (grande
+# demais: o card mede ~320px na tela e baixava 5x mais bytes do que usava).
+# Como as fotos agora sao nossas, geramos um 400px que serve o card direito.
+LARGURA_CARD = 400
 
 # ==============================================================================
 # 🛠️ CONFIGURAÇÃO ESTRUTURADA DOS ADICIONAIS
@@ -121,17 +134,64 @@ def processar_preco(variantes):
     formatado = formatado.replace(',', '§').replace('.', ',').replace('§', '.')
     return f"R$ {formatado}"                           # R$ 1.234,56
 
-def extrair_imagem(produto):
-    """Monta a URL da miniatura a partir do id da foto que a API informa."""
+def id_da_foto(produto):
+    """Extrai o identificador da foto que a API informa (None se nao tiver)."""
     imagens = sorted(produto.get('images') or [], key=lambda i: i.get('position', 0))
     if not imagens:
-        return SEM_IMAGEM
+        return None
+    match = re.search(r'/images/\d+/([0-9a-f-]{36})\.', imagens[0].get('image_url') or '')
+    return match.group(1) if match else None
 
-    url = imagens[0].get('image_url') or ''
-    match = re.search(r'/images/\d+/([0-9a-f-]{36})\.', url)
-    if not match:
-        return SEM_IMAGEM
-    return f"{BASE_IMAGEM}{match.group(1)}.webp"
+def baixar_foto(id_foto):
+    """
+    Garante a foto em 800px (baixada) e 400px (gerada a partir dela) dentro do
+    repositorio, e devolve o caminho da versao do card. Se algo falhar, devolve
+    a URL do ola.click: melhor apontar pra fora do que gravar caminho quebrado.
+    """
+    grande = os.path.join(FOTOS_DIR, "800", f"{id_foto}.webp")
+    card = os.path.join(FOTOS_DIR, str(LARGURA_CARD), f"{id_foto}.webp")
+    url_remota = BASE_IMAGEM.format(tamanho="800", id=id_foto)
+
+    try:
+        if not os.path.exists(grande):
+            resposta = requests.get(url_remota, timeout=30)
+            if resposta.status_code != 200:
+                print(f"   ⚠️ Foto {id_foto}: HTTP {resposta.status_code}")
+                return url_remota
+            os.makedirs(os.path.dirname(grande), exist_ok=True)
+            with open(grande, 'wb') as f:
+                f.write(resposta.content)
+            print(f"   ⬇️ Foto nova: {id_foto}")
+
+        if not os.path.exists(card):
+            from PIL import Image
+            os.makedirs(os.path.dirname(card), exist_ok=True)
+            with Image.open(grande) as im:
+                altura = round(im.height * LARGURA_CARD / im.width)
+                im.resize((LARGURA_CARD, altura), Image.LANCZOS).save(
+                    card, "WEBP", quality=82, method=6)
+    except Exception as e:
+        print(f"   ⚠️ Falha na foto {id_foto}: {e}")
+        return url_remota
+
+    return card.replace(os.sep, "/")
+
+def limpar_fotos_orfas(ids_em_uso):
+    """
+    Apaga as fotos que nenhum produto usa mais. Sem isso, cada troca de foto no
+    painel deixaria a antiga no repositorio para sempre.
+    """
+    removidas = 0
+    for tamanho in ("800", str(LARGURA_CARD)):
+        pasta = os.path.join(FOTOS_DIR, tamanho)
+        if not os.path.isdir(pasta):
+            continue
+        for arquivo in os.listdir(pasta):
+            if arquivo[:-5] not in ids_em_uso and arquivo.endswith('.webp'):
+                os.remove(os.path.join(pasta, arquivo))
+                removidas += 1
+    if removidas:
+        print(f"🧹 {removidas} foto(s) que ninguem usa mais foram removidas.")
 
 def limpar_descricao(texto):
     """
@@ -226,9 +286,10 @@ def run():
     try:
         categorias = buscar_cardapio()
 
-        print("📦 Aplicando regras de adicionais...")
+        print("📦 Aplicando regras de adicionais e guardando as fotos...")
         cardapio_final = {}
         total_items_count = 0
+        ids_de_foto = set()
 
         for cat in sorted(categorias, key=lambda c: c.get('position', 0)):
             if not cat.get('visible', True):
@@ -247,11 +308,18 @@ def run():
                 if not nome_item:
                     continue
 
+                id_foto = id_da_foto(produto)
+                if id_foto:
+                    imagem = baixar_foto(id_foto)
+                    ids_de_foto.add(id_foto)
+                else:
+                    imagem = SEM_IMAGEM
+
                 items_lista.append({
                     "name": nome_item,
                     "description": limpar_descricao(produto.get('description')),
                     "price": processar_preco(produto.get('product_variants')),
-                    "image": extrair_imagem(produto),
+                    "image": imagem,
                     "addons": obter_adicionais(nome_categoria, nome_item)
                 })
 
@@ -267,8 +335,12 @@ def run():
             1 for c in cardapio_final.values()
             for i in c['items'] if i['image'] != SEM_IMAGEM
         )
+        locais = sum(
+            1 for c in cardapio_final.values()
+            for i in c['items'] if i['image'].startswith('assets/')
+        )
         print(f"📊 Total extraído: {total_items_count} itens ({com_foto} com foto, "
-              f"{total_items_count - com_foto} sem).")
+              f"{total_items_count - com_foto} sem). {locais} servidas pelo proprio site.")
 
         # ======================================================================
         # 🛡️ TRAVA ANTI-CARDÁPIO-INCOMPLETO
@@ -295,6 +367,8 @@ def run():
             print("   O menu.json NÃO foi alterado.")
             print("=" * 60)
             sys.exit(1)
+
+        limpar_fotos_orfas(ids_de_foto)
 
         with open('menu.json', 'w', encoding='utf-8') as f:
             json.dump(cardapio_final, f, ensure_ascii=False, indent=4)

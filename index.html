@@ -33,9 +33,7 @@
     <!-- CSS do Tailwind ja compilado (gerado pelo workflow "Compilar CSS").
          Antes era o cdn.tailwindcss.com: 398 KB de JavaScript que montava o
          CSS no navegador a cada visita. Agora sao ~25 KB de CSS pronto. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="assets/fontes/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 
     <link rel="stylesheet" href="assets/tailwind.css">
 </head>
@@ -62,7 +60,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between py-3">
                 <div class="flex items-center min-w-0">
-                    <button id="category-drawer-button" class="md:hidden mr-3 text-[#0033A0] dark:text-[#FFD100] text-xl"><svg class="icon" aria-hidden="true"><use href="#i-bars"/></svg></button>
+                    <button id="category-drawer-button" aria-label="Abrir menu de categorias" class="md:hidden mr-3 text-[#0033A0] dark:text-[#FFD100] text-xl"><svg class="icon" aria-hidden="true"><use href="#i-bars"/></svg></button>
                     <img src="https://assets.olaclick.app/companies/logos/5020ff7e-3077-4507-911a-7820e15488e3.webp" alt="Café Ypiranga" class="w-12 h-12 rounded-full mr-4 border-2 border-stone-200" onerror="this.onerror=null; this.src='assets/logo.png'">
                     <div class="min-w-0">
                         <h1 class="text-xl font-bold text-[#0033A0] dark:text-[#FFD100] truncate">CAFÉ YPIRANGA</h1>
@@ -71,7 +69,7 @@
                 </div>
                 <div class="flex items-center">
                     <label for="theme-toggle" class="relative inline-flex items-center cursor-pointer ml-2">
-                        <input type="checkbox" value="" id="theme-toggle" class="sr-only peer">
+                        <input type="checkbox" value="" id="theme-toggle" aria-label="Alternar entre tema claro e escuro" class="sr-only peer">
                         <div class="w-11 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-yellow-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0033A0]"></div>
                     </label>
                 </div>
@@ -89,7 +87,9 @@
         </div>
     </div>
 
-    <main id="menu-container" class="max-w-7xl mx-auto px-4 py-6 pb-24"></main>
+    <!-- min-h-screen reserva o espaco do cardapio: sem isso o rodape pinta
+         no topo e "pula" quando os produtos entram (era o CLS de 0,22). -->
+    <main id="menu-container" class="max-w-7xl mx-auto px-4 py-6 pb-24 min-h-screen"></main>
 
     <footer class="bg-gray-800 dark:bg-black text-gray-300 py-8 text-center pb-24">
         <p class="font-bold text-lg">CAFÉ YPIRANGA</p>
@@ -97,23 +97,23 @@
     </footer>
 
     <div class="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-4">
-        <button id="cart-fab" class="hidden relative bg-[#FFD100] text-[#0033A0] w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-xl hover:scale-105 active:scale-95 transition-all border-4 border-white dark:border-gray-800">
+        <button id="cart-fab" aria-label="Ver meu pedido" class="hidden relative bg-[#FFD100] text-[#0033A0] w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-xl hover:scale-105 active:scale-95 transition-all border-4 border-white dark:border-gray-800">
             <svg class="icon" aria-hidden="true"><use href="#i-shopping-cart"/></svg>
             <span id="cart-badge" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-800">0</span>
         </button>
-        <button id="back-to-top" class="hidden bg-[#0033A0] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg shadow-lg active:scale-90 transition-all opacity-80 hover:opacity-100">
+        <button id="back-to-top" aria-label="Voltar ao topo" class="hidden bg-[#0033A0] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg shadow-lg active:scale-90 transition-all opacity-80 hover:opacity-100">
             <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg>
         </button>
     </div>
 
     <div id="product-modal" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col md:flex-row overflow-hidden relative animate-fade-in">
-            <button class="close-button absolute top-4 right-4 z-10 bg-black/20 hover:bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center backdrop-blur-md transition-colors">
+            <button aria-label="Fechar" class="close-button absolute top-4 right-4 z-10 bg-black/20 hover:bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center backdrop-blur-md transition-colors">
                 <svg class="icon" aria-hidden="true"><use href="#i-times"/></svg>
             </button>
             
             <div class="w-full md:w-1/2 h-48 md:h-auto relative bg-gray-100 dark:bg-gray-700">
-                <img id="modal-image" src="" class="absolute inset-0 w-full h-full object-cover">
+                <img id="modal-image" src="" alt="" class="absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=Sem+Foto'">
             </div>
             
             <div class="flex flex-col p-6 flex-1 overflow-hidden">
@@ -133,9 +133,9 @@
                     
                     <div class="flex gap-3">
                         <div class="flex items-center border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800">
-                            <button id="qty-minus" class="w-10 h-10 text-gray-500 hover:text-[#0033A0] text-lg font-bold">-</button>
+                            <button id="qty-minus" aria-label="Diminuir quantidade" class="w-10 h-10 text-gray-500 hover:text-[#0033A0] text-lg font-bold">-</button>
                             <span id="qty-value" class="w-8 text-center font-bold dark:text-white">1</span>
-                            <button id="qty-plus" class="w-10 h-10 text-gray-500 hover:text-[#0033A0] text-lg font-bold">+</button>
+                            <button id="qty-plus" aria-label="Aumentar quantidade" class="w-10 h-10 text-gray-500 hover:text-[#0033A0] text-lg font-bold">+</button>
                         </div>
                         <button id="add-to-order-button" class="flex-1 bg-[#FFD100] text-[#0033A0] font-bold py-3 px-6 rounded-lg hover:bg-yellow-400 transition-colors shadow-sm active:scale-[0.98]">
                             Adicionar <span class="hidden sm:inline">ao Pedido</span>
@@ -151,7 +151,7 @@
         <div class="relative w-4/5 max-w-xs h-full bg-white dark:bg-gray-900 shadow-2xl flex flex-col transform transition-transform duration-300">
             <div class="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-800 bg-[#0033A0] text-white">
                 <h2 class="text-lg font-bold">Categorias</h2>
-                <button id="close-drawer-button" class="text-white/80 hover:text-white"><svg class="icon text-xl" aria-hidden="true"><use href="#i-times"/></svg></button>
+                <button id="close-drawer-button" aria-label="Fechar menu de categorias" class="text-white/80 hover:text-white"><svg class="icon text-xl" aria-hidden="true"><use href="#i-times"/></svg></button>
             </div>
             <nav id="category-links-mobile" class="flex-1 overflow-y-auto p-2 space-y-1"></nav>
         </div>
@@ -162,7 +162,7 @@
         <div class="relative ml-auto w-full max-w-md h-full bg-white dark:bg-gray-900 shadow-2xl flex flex-col transform transition-transform duration-300">
             <div class="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 z-10">
                 <h2 class="text-xl font-bold text-[#0033A0] dark:text-[#FFD100]"><svg class="icon mr-2" aria-hidden="true"><use href="#i-shopping-bag"/></svg>Seu Pedido</h2>
-                <button id="close-order-drawer-button" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200"><svg class="icon" aria-hidden="true"><use href="#i-times"/></svg></button>
+                <button id="close-order-drawer-button" aria-label="Fechar meu pedido" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200"><svg class="icon" aria-hidden="true"><use href="#i-times"/></svg></button>
             </div>
             
             <div id="empty-cart-msg" class="hidden flex-1 flex flex-col items-center justify-center text-gray-400 p-8 text-center">
@@ -204,7 +204,7 @@
                 </div>
             </div>
             <div class="relative w-full sm:w-28 h-32 sm:h-28 flex-shrink-0 order-1 sm:order-2 rounded-lg overflow-hidden bg-gray-100">
-                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" decoding="async" alt="" onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=Sem+Foto'">
             </div>
         </div>
     </template>
@@ -240,7 +240,7 @@
             <div class="flex-1 min-w-0">
                 <div class="flex justify-between items-start">
                     <p class="font-bold text-gray-800 dark:text-gray-100 text-sm leading-tight pr-6 name truncate"></p>
-                    <button class="remove-item-btn text-gray-400 hover:text-red-500 transition-colors p-1 -mt-1 -mr-2"><svg class="icon" aria-hidden="true"><use href="#i-trash-alt"/></svg></button>
+                    <button aria-label="Remover item do pedido" class="remove-item-btn text-gray-400 hover:text-red-500 transition-colors p-1 -mt-1 -mr-2"><svg class="icon" aria-hidden="true"><use href="#i-trash-alt"/></svg></button>
                 </div>
                 <div class="addons text-xs text-gray-500 dark:text-gray-400 mt-1 space-y-0.5"></div>
                 <div class="flex justify-between items-end mt-2">
@@ -300,9 +300,11 @@
                 },
                 fmtPrice(val) { return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); },
                 genId(str) { return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, '-'); },
-                highRes(url) { 
+                // Só o modal usa isto. O card já recebe a versão de 400px,
+                // que é o tamanho em que ele realmente aparece na tela.
+                highRes(url) {
                     if(!url || url.includes('placehold')) return "https://placehold.co/800x600?text=Sem+Foto";
-                    return url.replace('/150/', '/800/'); 
+                    return url.replace('/400/', '/800/');
                 }
             },
 
@@ -314,6 +316,7 @@
             },
 
             renderMenu() {
+                let imagensAcima = 0;   // quantas fotos ja marcamos como prioritarias
                 const container = document.getElementById('menu-container');
                 const deskLinks = document.getElementById('category-links-desktop');
                 const mobLinks = document.getElementById('category-links-mobile');
@@ -370,7 +373,14 @@
                         card.querySelector('.price').textContent = prod.price;
                         
                         const img = card.querySelector('img');
-                        img.src = this.utils.highRes(prod.image);
+                        // As primeiras fotos ja aparecem na tela: carregar
+                        // com prioridade evita o atraso que o lazy causava.
+                        if (imagensAcima < 4) {
+                            img.loading = 'eager';
+                            img.fetchPriority = 'high';
+                            imagensAcima++;
+                        }
+                        img.src = prod.image;
 
                         // Lógica de badge de opções
                         // O Python retorna "addons" preenchido se houver
