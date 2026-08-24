@@ -316,7 +316,8 @@
             },
 
             renderMenu() {
-                let imagensAcima = 0;   // quantas fotos ja marcamos como prioritarias
+                this.imagensAcima = 0;  // quantas fotos ja marcamos como prioritarias
+                const fila = [];        // categorias esperando pra montar os cards
                 const container = document.getElementById('menu-container');
                 const deskLinks = document.getElementById('category-links-desktop');
                 const mobLinks = document.getElementById('category-links-mobile');
@@ -363,37 +364,72 @@
                     const grid = document.createElement('div');
                     grid.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4";
 
-                    catData.items.forEach(prod => {
-                        const clone = tplCard.content.cloneNode(true);
-                        const card = clone.querySelector('.product-card');
-                        card.productData = prod; 
-
-                        card.querySelector('h3').textContent = prod.name;
-                        card.querySelector('p').textContent = prod.description;
-                        card.querySelector('.price').textContent = prod.price;
-                        
-                        const img = card.querySelector('img');
-                        // As primeiras fotos ja aparecem na tela: carregar
-                        // com prioridade evita o atraso que o lazy causava.
-                        if (imagensAcima < 4) {
-                            img.loading = 'eager';
-                            img.fetchPriority = 'high';
-                            imagensAcima++;
-                        }
-                        img.src = prod.image;
-
-                        // Lógica de badge de opções
-                        // O Python retorna "addons" preenchido se houver
-                        if ((prod.addons && prod.addons.length > 0)) {
-                            card.querySelector('.options-badge').classList.remove('hidden');
-                        }
-
-                        grid.appendChild(card);
-                    });
+                    // Os cards nao entram agora: sao 249 no total e montar
+                    // todos de uma vez travava a pagina por ~700ms. Fica pra
+                    // fila, processada por categoria.
+                    fila.push({ grid, items: catData.items });
 
                     section.appendChild(grid);
                     container.appendChild(section);
                 });
+
+                // A primeira categoria entra junto com a pagina — e o que o
+                // cliente ve de cara. O resto vai chegando sem travar a tela.
+                if (fila.length) this.montarCards(fila.shift());
+                this.montarEmLotes(fila);
+            },
+
+            /* Monta os cards de uma categoria. */
+            montarCards({ grid, items }) {
+                const tplCard = document.getElementById('product-card-template');
+                const frag = document.createDocumentFragment();
+
+                items.forEach(prod => {
+                    const clone = tplCard.content.cloneNode(true);
+                    const card = clone.querySelector('.product-card');
+                    card.productData = prod;
+
+                    card.querySelector('h3').textContent = prod.name;
+                    card.querySelector('p').textContent = prod.description;
+                    card.querySelector('.price').textContent = prod.price;
+
+                    const img = card.querySelector('img');
+                    // As primeiras fotos ja aparecem na tela: carregar
+                    // com prioridade evita o atraso que o lazy causava.
+                    if (this.imagensAcima < 4) {
+                        img.loading = 'eager';
+                        img.fetchPriority = 'high';
+                        this.imagensAcima++;
+                    }
+                    img.src = prod.image;
+
+                    // Lógica de badge de opções
+                    // O Python retorna "addons" preenchido se houver
+                    if (prod.addons && prod.addons.length > 0) {
+                        card.querySelector('.options-badge').classList.remove('hidden');
+                    }
+
+                    frag.appendChild(card);
+                });
+
+                grid.appendChild(frag);
+            },
+
+            /* Processa a fila devolvendo o controle ao navegador entre uma
+               categoria e outra, para a pagina nunca ficar travada. */
+            montarEmLotes(fila) {
+                if (!fila.length) return;
+                const agenda = window.requestIdleCallback
+                    || (fn => setTimeout(() => fn({ timeRemaining: () => 8 }), 16));
+
+                const passo = (prazo) => {
+                    // Enquanto sobrar tempo neste quadro, monta mais uma categoria.
+                    while (fila.length && prazo.timeRemaining() > 6) {
+                        this.montarCards(fila.shift());
+                    }
+                    if (fila.length) agenda(passo, { timeout: 500 });
+                };
+                agenda(passo, { timeout: 500 });
             },
 
             initModalLogic() {
