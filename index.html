@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cardápio digital do CAFÉ YPIRANGA.">
+    <meta name="description" content="Cardápio digital do CAFÉ YPIRANGA - Santa Helena, PR. Cafés, lanches, porções e bebidas.">
     <title>Cardápio Digital - CAFÉ YPIRANGA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="canonical" href="https://cafe-ypiranga.github.io/">
+
+    <!-- Ícones. Ficam no repositório de proposito: o navegador pede o favicon
+         antes de qualquer script rodar, entao nao da pra ter fallback aqui. -->
+    <link rel="icon" href="assets/favicon.ico" sizes="any">
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#0033A0">
+
+    <!-- Prévia ao compartilhar (WhatsApp, Facebook, Telegram...).
+         A imagem PRECISA ser URL absoluta e vir do repositório: quem monta a
+         prévia é um robô que nao executa JavaScript, entao um fallback via
+         onerror nao funcionaria aqui. -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CAFÉ YPIRANGA">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:url" content="https://cafe-ypiranga.github.io/">
+    <meta property="og:title" content="Cardápio Digital - CAFÉ YPIRANGA">
+    <meta property="og:description" content="Veja o cardápio completo do CAFÉ YPIRANGA em Santa Helena, PR.">
+    <meta property="og:image" content="https://cafe-ypiranga.github.io/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CAFÉ YPIRANGA - Cardápio Digital">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Versao fixa de proposito: a URL sem versao entrega o que o CDN decidir,
+         e a linha 4.x do Tailwind nao aceita mais o 'tailwind.config' usado
+         logo abaixo. Sem fixar, uma troca no CDN tiraria o estilo do site. -->
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <script>
         tailwind.config = { darkMode: 'class' }
     </script>
@@ -28,7 +56,7 @@
             <div class="flex items-center justify-between py-3">
                 <div class="flex items-center min-w-0">
                     <button id="category-drawer-button" class="md:hidden mr-3 text-[#0033A0] dark:text-[#FFD100] text-xl"><i class="fas fa-bars"></i></button>
-                    <img src="https://assets.olaclick.app/companies/logos/5020ff7e-3077-4507-911a-7820e15488e3.webp" alt="Café Ypiranga" class="w-12 h-12 rounded-full mr-4 border-2 border-stone-200" onerror="this.src='https://placehold.co/100x100?text=Logo'">
+                    <img src="https://assets.olaclick.app/companies/logos/5020ff7e-3077-4507-911a-7820e15488e3.webp" alt="Café Ypiranga" class="w-12 h-12 rounded-full mr-4 border-2 border-stone-200" onerror="this.onerror=null; this.src='assets/logo.png'">
                     <div class="min-w-0">
                         <h1 class="text-xl font-bold text-[#0033A0] dark:text-[#FFD100] truncate">CAFÉ YPIRANGA</h1>
                         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1"><i class="fas fa-map-marker-alt mr-1"></i> Santa Helena, PR</div>
