@@ -3,7 +3,7 @@
 Cardápio que os clientes acessam pelo QR code. É um site estático publicado no
 GitHub Pages, sem servidor e sem custo de hospedagem.
 
-**No ar em:** <!-- URL_DO_SITE -->
+**No ar em:** https://cafe-ypiranga.github.io/
 
 ## Como funciona
 
