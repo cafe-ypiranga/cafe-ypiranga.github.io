@@ -35,6 +35,17 @@
          CSS no navegador a cada visita. Agora sao ~25 KB de CSS pronto. -->
     <link rel="preload" href="assets/fontes/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 
+    <!-- O cardapio so aparece depois de baixar o menu.json, e o navegador so
+         descobre esse arquivo quando o JS roda. O preload adianta o download
+         para o mesmo instante do HTML. -->
+    <link rel="preload" href="menu.json" as="fetch" crossorigin="anonymous">
+
+    <!-- Foto do primeiro produto. Preenchido pelo robo a cada atualizacao:
+         sem isto o navegador so descobre esta imagem depois de baixar e
+         processar o menu.json inteiro. -->
+    <!-- PRELOAD-PRIMEIRA-FOTO -->
+    <link rel="preload" href="assets/fotos/400/a2073e59-6ea5-4f7d-a523-5a986f3fed6d.webp" as="image" fetchpriority="high">
+
     <link rel="stylesheet" href="assets/tailwind.css">
 </head>
 <body class="bg-stone-50 dark:bg-gray-900 text-gray-800 dark:text-stone-200 transition-colors duration-300">
