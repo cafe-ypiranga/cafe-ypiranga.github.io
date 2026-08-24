@@ -280,41 +280,6 @@ def buscar_cardapio():
             time.sleep(tentativa * 3)
     raise RuntimeError(f"Não foi possível baixar o cardápio ({ultimo_erro})")
 
-def atualizar_preload(cardapio):
-    """
-    Escreve no index.html o preload da foto do primeiro produto. Sem isso o
-    navegador so descobre essa imagem depois de baixar e processar o
-    menu.json, o que atrasa a maior pintura da pagina.
-    """
-    MARCA = "<!-- PRELOAD-PRIMEIRA-FOTO -->"
-    primeira = next(
-        (i['image'] for c in cardapio.values() for i in c['items']
-         if i['image'].startswith('assets/')), None)
-
-    try:
-        with open('index.html', 'r', encoding='utf-8') as f:
-            html = f.read()
-    except OSError:
-        return
-
-    if MARCA not in html:
-        print("   ⚠️ Marcador do preload nao encontrado no index.html; etapa pulada.")
-        return
-
-    linha = MARCA
-    if primeira:
-        linha += f'\n    <link rel="preload" href="{primeira}" as="image" fetchpriority="high">'
-
-    # Substitui o marcador E o <link> que ele tenha gerado antes, senao cada
-    # execucao acrescentaria uma linha nova.
-    padrao = re.escape(MARCA) + r'(\n\s*<link rel="preload"[^>]*as="image"[^>]*>)?'
-    novo_html = re.sub(padrao, lambda m: linha, html, count=1)
-
-    if novo_html != html:
-        with open('index.html', 'w', encoding='utf-8') as f:
-            f.write(novo_html)
-        print(f"   🔗 Preload apontando para {primeira}")
-
 def embutir_no_html(cardapio):
     """
     Escreve o cardapio dentro do index.html, num bloco <script type=
@@ -441,7 +406,6 @@ def run():
             print("=" * 60)
             sys.exit(1)
 
-        atualizar_preload(cardapio_final)
         limpar_fotos_orfas(ids_de_foto)
 
         with open('menu.json', 'w', encoding='utf-8') as f:
