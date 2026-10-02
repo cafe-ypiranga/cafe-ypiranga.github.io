@@ -2055,6 +2055,62 @@
                         ]
                     }
                 ]
+            },
+            {
+                "name": "PASTEL GRANDE",
+                "description": "Pastel frito na hora — CARNE — QUEIJO",
+                "price": "R$ 12,00",
+                "image": "assets/fotos/400/695b376f-c274-4c05-a596-a4184a54ef44.webp",
+                "addons": [
+                    {
+                        "group_name": "Turbine seu lanche",
+                        "required": false,
+                        "min": 0,
+                        "max": 5,
+                        "options": [
+                            {
+                                "name": "Bacon (3 fatias)",
+                                "price": "R$ 5,00"
+                            },
+                            {
+                                "name": "Queijo Extra",
+                                "price": "R$ 2,00"
+                            },
+                            {
+                                "name": "Hambúrguer Extra",
+                                "price": "R$ 8,00"
+                            },
+                            {
+                                "name": "Fritas (100g)",
+                                "price": "R$ 10,00"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name": "Molhos",
+                        "required": false,
+                        "min": 0,
+                        "max": 3,
+                        "options": [
+                            {
+                                "name": "Maionese da Casa",
+                                "price": "Grátis"
+                            },
+                            {
+                                "name": "Ketchup",
+                                "price": "Grátis"
+                            },
+                            {
+                                "name": "Barbecue",
+                                "price": "Grátis"
+                            },
+                            {
+                                "name": "Mostarda",
+                                "price": "Grátis"
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -2115,17 +2171,10 @@
                 ]
             },
             {
-                "name": "POLPETONE",
-                "description": "Delicie-se com este clássico de raízes italianas, adaptado e amado no Brasil: uma suculenta almôndega recheada com parmesão derretido, empanada e crocante. Servida com molho de tomate pelado artesanal e batatas fritas. Um prato cheio de personalidade e sabor.",
-                "price": "R$ 48,00",
-                "image": "assets/fotos/400/b558ccee-c3a7-4188-86dc-190ce474ccf5.webp",
-                "addons": []
-            },
-            {
                 "name": "PREMIUM STEAK",
                 "description": "Mignon e Demi Glace, purê de batata acompanhado de vegetais.",
                 "price": "R$ 75,00",
-                "image": "https://placehold.co/400x300?text=Sem+Imagem",
+                "image": "assets/fotos/400/668b4b33-017d-4baa-8130-fc5f6d8f0110.webp",
                 "addons": [
                     {
                         "group_name": "Escolha o ponto da carne",
@@ -2153,7 +2202,7 @@
                 "name": "STEAK PARMEGIANA",
                 "description": ".",
                 "price": "R$ 78,00",
-                "image": "https://placehold.co/400x300?text=Sem+Imagem",
+                "image": "assets/fotos/400/471e5d8b-1834-4ac8-b9ab-74d0f7012309.webp",
                 "addons": [
                     {
                         "group_name": "Escolha o ponto da carne",
@@ -2176,13 +2225,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "name": "Produto 8",
-                "description": "",
-                "price": "R$ A consultar",
-                "image": "https://placehold.co/400x300?text=Sem+Imagem",
-                "addons": []
             }
         ]
     },
@@ -4066,13 +4108,6 @@
                 "addons": []
             },
             {
-                "name": "EMPADÃO CARNE",
-                "description": "",
-                "price": "R$ 14,00",
-                "image": "https://placehold.co/400x300?text=Sem+Imagem",
-                "addons": []
-            },
-            {
                 "name": "EMPADÃO FRANGO",
                 "description": "",
                 "price": "R$ 14,00",
@@ -4663,28 +4698,28 @@
                 "name": "ANTARTICA ORIGINAL LATA 350ML",
                 "description": "",
                 "price": "R$ 6,00",
-                "image": "https://placehold.co/400x300?text=Sem+Imagem",
+                "image": "assets/fotos/400/67d9f5d9-e602-49a8-9260-188254c348be.webp",
                 "addons": []
             },
             {
                 "name": "AMSTEL LARGER LATA 269ML",
                 "description": "",
                 "price": "R$ 4,00",
-                "image": "https://placehold.co/400x300?text=Sem+Imagem",
+                "image": "assets/fotos/400/92c064b3-3157-401d-8c65-5057a7e43926.webp",
                 "addons": []
             },
             {
                 "name": "BAVARIA LATA 350ML",
                 "description": "",
-                "price": "R$ 4,00",
-                "image": "https://placehold.co/400x300?text=Sem+Imagem",
+                "price": "R$ 5,00",
+                "image": "assets/fotos/400/08710f12-3c68-4930-894d-5ec5adb2122f.webp",
                 "addons": []
             },
             {
-                "name": "BRAHMA LATA 269ML",
+                "name": "BRAHMA LATA 350ML",
                 "description": "",
-                "price": "R$ 4,00",
-                "image": "https://placehold.co/400x300?text=Sem+Imagem",
+                "price": "R$ 5,00",
+                "image": "assets/fotos/400/e4e73baf-db7a-4919-bf48-8ee6b0699f9c.webp",
                 "addons": []
             }
         ]
