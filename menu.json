@@ -1216,13 +1216,6 @@
                 "addons": []
             },
             {
-                "name": "PASTELZINHO DE CUPIM 8un",
-                "description": "O sabor que encanta! 🥟✨ Experimente a crocância inigualável da nossa massa de pastel, que abraça um recheio simplesmente espetacular: suculento cupim defumado e desfiado, preparado artesanalmente para uma maciez sem igual, com um leve toque de queijo cremoso",
-                "price": "R$ 19,00",
-                "image": "assets/fotos/400/57976eb1-526e-41f6-93ba-aa8b9b49f643.webp",
-                "addons": []
-            },
-            {
                 "name": "MANDIOQUINHA CUBO",
                 "description": "",
                 "price": "R$ 17,00",
@@ -1734,7 +1727,7 @@
             {
                 "name": "BAURU COM OVO",
                 "description": "O Seu Clássico Favorito, Ainda Melhor e Mais Saudável! 🤤 Se você já amava nosso Bauru tradicional, prepare-se para se apaixonar novamente! Mantemos a receita original e adicionamos um ovo feito no forno, transformando seu lanche em uma refeição ainda mais completa, deliciosa e sem gordura do preparo.",
-                "price": "R$ 13,00",
+                "price": "R$ 1,00",
                 "image": "assets/fotos/400/8b225a85-03fe-4a6c-8c06-a8091d9d491b.webp",
                 "addons": [
                     {
@@ -1790,7 +1783,7 @@
             {
                 "name": "OMELETE",
                 "description": "Omelete Enrolada: Sabor e Leveza em Cada Garfada! 🍳🍅Desfrute da nossa omelete, preparada com 3 ovos frescos e o toque vibrante do tomate picado. Por dentro, o queijo derretido abraça tudo, enquanto o orégano adiciona aquele aroma especial. Perfeita para um café da manhã reforçado, um almoço leve ou um jantar rápido e delicioso. Uma opção cheia de sabor e praticidade.",
-                "price": "R$ 12,00",
+                "price": "R$ 16,00",
                 "image": "assets/fotos/400/5e721935-9f93-4deb-b7dd-ccb7e7c6f8a0.webp",
                 "addons": [
                     {
@@ -1848,62 +1841,6 @@
                 "description": "🥓 Delicie-se com a perfeição dos nossos ovos mexidos, preparados com creme de leite para alcançar uma suavidade e cremosidade incomparáveis. Acompanhados de pão tostado quentinho e fatias de bacon crocante, este é o prato ideal para transformar seu café da manhã ou brunch em um momento de puro prazer.",
                 "price": "R$ 22,00",
                 "image": "assets/fotos/400/ff537d67-e2ed-44c4-aeeb-600e350c6065.webp",
-                "addons": [
-                    {
-                        "group_name": "Turbine seu lanche",
-                        "required": false,
-                        "min": 0,
-                        "max": 5,
-                        "options": [
-                            {
-                                "name": "Bacon (3 fatias)",
-                                "price": "R$ 5,00"
-                            },
-                            {
-                                "name": "Queijo Extra",
-                                "price": "R$ 2,00"
-                            },
-                            {
-                                "name": "Hambúrguer Extra",
-                                "price": "R$ 8,00"
-                            },
-                            {
-                                "name": "Fritas (100g)",
-                                "price": "R$ 10,00"
-                            }
-                        ]
-                    },
-                    {
-                        "group_name": "Molhos",
-                        "required": false,
-                        "min": 0,
-                        "max": 3,
-                        "options": [
-                            {
-                                "name": "Maionese da Casa",
-                                "price": "Grátis"
-                            },
-                            {
-                                "name": "Ketchup",
-                                "price": "Grátis"
-                            },
-                            {
-                                "name": "Barbecue",
-                                "price": "Grátis"
-                            },
-                            {
-                                "name": "Mostarda",
-                                "price": "Grátis"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "OVO CARBONARA",
-                "description": "Uma combinação deliciosa de ovo, queijo parmesão e bacon em cubos. Acompanha pão de forma crocante.",
-                "price": "R$ 22,00",
-                "image": "assets/fotos/400/61da7f61-7cf8-468f-8c21-2e73288da324.webp",
                 "addons": [
                     {
                         "group_name": "Turbine seu lanche",
@@ -2559,14 +2496,14 @@
             {
                 "name": "MOSCOW MULE",
                 "description": "Refrescância e Sabor em Cada Gole! 🍹 Experimente nosso Moscow Mule, uma fusão perfeita de gelo, água com gás, e a nossa exclusiva espuma de gengibre. A base? Gengibre natural, limão fresco e vodka de qualidade. Um coquetel vibrante,",
-                "price": "R$ 20,00",
+                "price": "R$ 28,00",
                 "image": "assets/fotos/400/787b41e4-6f33-4893-b4a8-b3d4409c3f94.webp",
                 "addons": []
             },
             {
                 "name": "PINK MULE",
                 "description": "A Refrescância do Gengibre com o Doce das Frutas Vermelhas! 💖�� Nosso Pink Mule é feito com gelo, água com gás, nossa exclusiva espuma de gengibre, e o toque especial das frutas vermelhas. Uma combinação vibrante de gengibre natural, limão e vodka, que entrega um sabor irresistível e uma cor apaixonante.",
-                "price": "R$ 20,00",
+                "price": "R$ 28,00",
                 "image": "assets/fotos/400/72872a33-07e3-4da1-aab9-87100eee6778.webp",
                 "addons": []
             },
@@ -2624,7 +2561,7 @@
             {
                 "name": "01 PORTUGUESA",
                 "description": "Molho de tomate, mussarela, presunto, ovos, azeitona verde, cebola e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/10920976-cf74-4945-9ea2-abe6b0578890.webp",
                 "addons": [
                     {
@@ -2656,7 +2593,7 @@
             {
                 "name": "06 QUATRO QUEIJOS",
                 "description": "Molho de tomate, mussarela, gorgonzola, provolone e catupiry.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/79df672b-9de7-49ce-a3be-a546f98adb31.webp",
                 "addons": [
                     {
@@ -2688,7 +2625,7 @@
             {
                 "name": "11 RÚCULA COM TOMATE SECO",
                 "description": "Molho de tomate, mussarela, rúcula e tomate seco.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/366a7444-06e0-4502-a0f3-f1df7ec8be68.webp",
                 "addons": [
                     {
@@ -2720,7 +2657,7 @@
             {
                 "name": "17 ARGENTINA",
                 "description": "Molho de tomate, mussarela, catupiry, bacon, milho, palmito e azeitona fatiada.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/8ed3bc64-6d1b-4711-8efd-4c10f2799bc1.webp",
                 "addons": [
                     {
@@ -2752,7 +2689,7 @@
             {
                 "name": "18 FRANGO COM CATUPIRY",
                 "description": "Molho de tomate, mussarela, frango desfiado, catupiry e milho.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/5e121bda-fc37-4aaa-b625-9854327d4f58.webp",
                 "addons": [
                     {
@@ -2784,7 +2721,7 @@
             {
                 "name": "21 LOMBO COM ABACAXI",
                 "description": "Molho de tomate, mussarela, abacaxi e lombo canadense.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/8cd08593-e283-44e3-8682-7d30d861ec46.webp",
                 "addons": [
                     {
@@ -2816,7 +2753,7 @@
             {
                 "name": "29 MARGUERITA",
                 "description": "Molho de tomate, mussarela, manjericão, tomate, azeitona e parmesão.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/174505e4-6cab-4282-a1ae-267e68d05930.webp",
                 "addons": [
                     {
@@ -2848,7 +2785,7 @@
             {
                 "name": "30 CALABRESA",
                 "description": "Molho de tomate, mussarela, calabresa.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/fc3c14dc-d338-4b4e-af03-5e53d7a4c67d.webp",
                 "addons": [
                     {
@@ -2880,7 +2817,7 @@
             {
                 "name": "32 BRÓCOLIS COM BACON",
                 "description": "Molho de tomate, mussarela, brócolis, bacon, palmito e azeitona.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/d5372247-7f72-4529-925f-03de9a49aac9.webp",
                 "addons": [
                     {
@@ -2912,7 +2849,7 @@
             {
                 "name": "35 STROGONOFF DE CARNE",
                 "description": "Molho de tomate, mussarela, carne bovina e batata palha.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/7a20aea5-aa1f-48e0-a4fb-485ebfd6f449.webp",
                 "addons": [
                     {
@@ -2944,7 +2881,7 @@
             {
                 "name": "41 SUPREME",
                 "description": "Molho de tomate, mussarela, tomate seco, carne bovina, pepperoni, champignon, pimentão, cebola, azeitona fatiada e orégano.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/a6497154-68fb-44c0-84c7-6087a4163d53.webp",
                 "addons": [
                     {
@@ -2976,7 +2913,7 @@
             {
                 "name": "44 COSTELA",
                 "description": "Molho de tomate, mussarela, bacon, carne de costela desfiada, tomate seco, cebola e orégano.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/c0137cca-c4ce-4fc8-a3b5-b0679207b4e1.webp",
                 "addons": [
                     {
@@ -3008,7 +2945,7 @@
             {
                 "name": "45 ALHO E OLEO",
                 "description": "Molho de tomate, mussarela, alho e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/669f3bef-6897-4838-8f08-2502ab9f23d5.webp",
                 "addons": [
                     {
@@ -3040,7 +2977,7 @@
             {
                 "name": "46 BAIANA",
                 "description": "Molho de tomate, mussarela, calabresa moída, pimenta, ovo, cebola e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/32aa5617-f5b3-4050-b669-f7e24f80394a.webp",
                 "addons": [
                     {
@@ -3072,7 +3009,7 @@
             {
                 "name": "47 ATUM",
                 "description": "Molho de tomate, mussarela, atum, cebola e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/22899028-66de-4299-9432-25ad799a28ca.webp",
                 "addons": [
                     {
@@ -3104,7 +3041,7 @@
             {
                 "name": "48 BACON E MILHO",
                 "description": "Molho de tomate, mussarela, bacon, milho e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/178c42b2-c894-4851-9bc9-2d765a4afb0d.webp",
                 "addons": [
                     {
@@ -3136,7 +3073,7 @@
             {
                 "name": "49 BELEZURA",
                 "description": "Molho de tomate, mussarela, tomate seco, molho de alho, calabresa, azeitona e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/c7479519-667e-44ec-98e9-de73c6e10d5e.webp",
                 "addons": [
                     {
@@ -3168,7 +3105,7 @@
             {
                 "name": "59 BRÓCOLIS COM CARNE",
                 "description": "Molho de tomate, mussarela, carne bovina , brócolis, milho verde e orégano.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/1fb0292a-a741-401a-9215-cc98d32dc654.webp",
                 "addons": [
                     {
@@ -3200,7 +3137,7 @@
             {
                 "name": "60 CALABACON",
                 "description": "Molho de tomate, mussarela, calabresa, bacon e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/8a13acaa-7a16-47c1-b59f-6409befb2ddc.webp",
                 "addons": [
                     {
@@ -3232,7 +3169,7 @@
             {
                 "name": "61 CALABRESA COM CEBOLA",
                 "description": "Molho de tomate, mussarela, calabresa, cebola e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/e3f95a9a-f518-4bdb-80ae-e5eb5db71bb7.webp",
                 "addons": [
                     {
@@ -3264,7 +3201,7 @@
             {
                 "name": "62 CALAFRITAS",
                 "description": "Molho de tomate, mussarela, calabresa, batata frita e orégano.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/2ad4071e-7725-4e73-b1d0-e24bc6bfe20c.webp",
                 "addons": [
                     {
@@ -3296,7 +3233,7 @@
             {
                 "name": "63 CATUFILÉ COM ALHO",
                 "description": "Molho de tomate, mussarela, carne bovina, catupiry, alho e orégano.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/f65c684c-2224-41d4-ba7c-0eb31a364b95.webp",
                 "addons": [
                     {
@@ -3328,7 +3265,7 @@
             {
                 "name": "64 CHIQUITA",
                 "description": "Molho de tomate, mussarela, peperoni, ovos, pimentão e orégano.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/18351902-4b2a-4332-ab11-6521ace5d6b8.webp",
                 "addons": [
                     {
@@ -3360,7 +3297,7 @@
             {
                 "name": "65 DA MAMÃE",
                 "description": "Molho de tomate, mussarela, frango desfiado, bacon e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/920fc592-0976-4993-afdf-a8486ec44d41.webp",
                 "addons": [
                     {
@@ -3392,7 +3329,7 @@
             {
                 "name": "66 CROTONE",
                 "description": "Molho de tomate, mussarela, purê de batata, bacon e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/1d29b1a3-da13-4075-9cae-b3dcfc9090a3.webp",
                 "addons": [
                     {
@@ -3424,7 +3361,7 @@
             {
                 "name": "67 FAUSTÃO",
                 "description": "Molho de tomate, mussarela, presunto, calabresa, lombo, cebola e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/7ff5d12d-1eb7-43c2-ba4c-52ee454048b7.webp",
                 "addons": [
                     {
@@ -3456,7 +3393,7 @@
             {
                 "name": "68 FRANGO/BACON E CREAM CHEESE",
                 "description": "Molho de tomate, mussarela, frango desfiado, bacon, cream cheese e orégano.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/7aba41ab-e1cb-4878-878e-e5af304b883f.webp",
                 "addons": [
                     {
@@ -3488,7 +3425,7 @@
             {
                 "name": "69 FRANGO XADREZ",
                 "description": "Molho de tomate, mussarela, frango picado em cubos ao molho pimentão e orégano.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/f8f00121-c1ba-4d84-bd8c-f03146adc09f.webp",
                 "addons": [
                     {
@@ -3520,7 +3457,7 @@
             {
                 "name": "70 GOSTOSÃO",
                 "description": "Molho de tomate, mussarela, presunto, calabresa, catupiry, tomate, parmesão e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/9a71f1ae-f54d-4779-81e7-41b1e5b6029a.webp",
                 "addons": [
                     {
@@ -3552,7 +3489,7 @@
             {
                 "name": "71 ITALIANA",
                 "description": "Molho de tomate, mussarela, lombo, pimentão e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/e3c48094-16a6-4614-8356-0b6956bfd3f8.webp",
                 "addons": [
                     {
@@ -3584,7 +3521,7 @@
             {
                 "name": "72 LOMBO CANADENSE",
                 "description": "Molho de tomate, mussarela, lombo, catupiry, champignon e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/ff66dd45-2d9a-4894-a1d0-7650b7a1ce25.webp",
                 "addons": [
                     {
@@ -3616,7 +3553,7 @@
             {
                 "name": "73 NACHO",
                 "description": "Molho de tomate, mussarela, carne moída apimentada, orégano e Doritos.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/de2795a0-658c-4c07-a78f-c2c96c25c766.webp",
                 "addons": [
                     {
@@ -3648,7 +3585,7 @@
             {
                 "name": "74 PALMITO ESPECIAL",
                 "description": "Molho de tomate, mussarela, rodelas de palmito pupunha, tomate seco, azeitona preta sem caroço, cream cheese e orégano.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/8f0fcc58-6cd3-4df1-b26c-47ab09a52597.webp",
                 "addons": [
                     {
@@ -3680,7 +3617,7 @@
             {
                 "name": "75 PALMITO",
                 "description": "Molho de tomate, mussarela, palmito e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/5039d7c6-20ee-41be-952b-1f626650551e.webp",
                 "addons": [
                     {
@@ -3712,7 +3649,7 @@
             {
                 "name": "76 PEPECHEESE",
                 "description": "Molho de tomate, mussarela, peperoni, cream cheese e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/b56d5324-d6c2-490a-bb56-0b81ae6667a3.webp",
                 "addons": [
                     {
@@ -3744,7 +3681,7 @@
             {
                 "name": "77 PEPPERONI",
                 "description": "Molho de tomate, mussarela, pepperoni e orégano.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/8d47a5a3-e96e-4cb0-b089-4716481c21b9.webp",
                 "addons": [
                     {
@@ -3776,7 +3713,7 @@
             {
                 "name": "78 TOSCANA",
                 "description": "Molho de tomate, mussarela, calabresa, champignon e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/2567b6ef-f23e-4281-b6d4-36a9c53e1594.webp",
                 "addons": [
                     {
@@ -3840,7 +3777,7 @@
             {
                 "name": "88 MILHO CREMOSO",
                 "description": "Molho de tomate, mussarela, milho cremoso e orégano.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/66bc8ae2-7196-4039-adb4-01269ef315bc.webp",
                 "addons": [
                     {
@@ -3872,7 +3809,7 @@
             {
                 "name": "164 SEDUÇÃO",
                 "description": "Mussarela, chocolate branco, morango e leite condensado.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/9ae11e2e-f320-483f-a996-6f2090b22fa8.webp",
                 "addons": [
                     {
@@ -3904,7 +3841,7 @@
             {
                 "name": "156 CAROLINA",
                 "description": "Mussarela, abacaxi, chocolate branco e canela.",
-                "price": "R$ 65,00",
+                "price": "R$ 72,00",
                 "image": "assets/fotos/400/19180537-fbef-4a85-80c5-db882719d324.webp",
                 "addons": [
                     {
@@ -3936,7 +3873,7 @@
             {
                 "name": "154 SENSAÇÃO",
                 "description": "Mussarela, chocolate preto, morango e leite condensado.",
-                "price": "R$ 65,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/25dcf441-1c61-4949-ab38-4495d3fd277a.webp",
                 "addons": [
                     {
@@ -3968,7 +3905,7 @@
             {
                 "name": "80 BRIGADEIRO",
                 "description": "Mussarela, chocolate ao leite e granulado.",
-                "price": "R$ 59,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/8d628947-6f0d-4cf3-8406-17275be523a1.webp",
                 "addons": [
                     {
@@ -4032,7 +3969,7 @@
             {
                 "name": "83 CHARGE",
                 "description": "Mussarela, chocolate ao leite e amendoim moído.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/e9d59c87-9bca-410e-b6e5-b28034b7b396.webp",
                 "addons": [
                     {
@@ -4064,7 +4001,7 @@
             {
                 "name": "84 DOIS AMORES",
                 "description": "Mussarela, chocolate branco, chocolate preto ao leite e morango.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/bfed57a1-cf48-4f32-8615-c4efd96ba7aa.webp",
                 "addons": [
                     {
@@ -4096,7 +4033,7 @@
             {
                 "name": "85 KIDS",
                 "description": "Mussarela, chocolate preto e confeitos coloridos.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/f07005c9-8bcb-4c4e-ad37-4ee96bc697f2.webp",
                 "addons": [
                     {
@@ -4128,7 +4065,7 @@
             {
                 "name": "86 PRESTÍGIO",
                 "description": "Mussarela, creme de leite, chocolate preto ao leite e coco ralado.",
-                "price": "R$ 59,00",
+                "price": "R$ 65,00",
                 "image": "assets/fotos/400/7a174344-3500-41e1-880f-125c289b1d40.webp",
                 "addons": [
                     {
@@ -4160,7 +4097,7 @@
             {
                 "name": "87 ROMEU E JULIETA",
                 "description": "Mussarela e goiabada.",
-                "price": "R$ 59,00",
+                "price": "R$ 69,00",
                 "image": "assets/fotos/400/0973fbd0-235f-49e5-9707-654950b93e23.webp",
                 "addons": [
                     {
