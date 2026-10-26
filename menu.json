@@ -1546,6 +1546,13 @@
                 "price": "R$ 49,90",
                 "image": "https://placehold.co/400x300?text=Sem+Imagem",
                 "addons": []
+            },
+            {
+                "name": "Pastelzinho de carne 8un",
+                "description": "",
+                "price": "R$ 22,00",
+                "image": "assets/fotos/400/5578eb4e-04d3-49c5-9d19-4d4591bf506c.webp",
+                "addons": []
             }
         ]
     },
