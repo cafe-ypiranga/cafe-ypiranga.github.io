@@ -31,7 +31,7 @@ jobs:
         run: npx --yes tailwindcss@3.4.17 -c tailwind.config.js -i src.css -o assets/tailwind.css --minify
 
       - name: Salvar o CSS gerado
-        uses: stefanzweifel/git-auto-commit-action@4a55954c782fc1ea30b9056cd3e7a2b40ca8887d # v7.2.0
+        uses: stefanzweifel/git-auto-commit-action@d0b01107b5db882071f96de5dd4b54961ea93f4c # v7.2.1
         with:
           commit_message: "🎨 Recompilar o CSS"
           file_pattern: assets/tailwind.css
